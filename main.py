@@ -67,11 +67,7 @@ for node in G:
         color_map.append('lightblue')   
 
 
-# pos = nx.spring_layout(G, scale=9)
-# nx.draw(G, node_color=color_map, node_size=600, with_labels = True, pos=pos,font_size=10)
-
 pos = nx.spring_layout(G, k=0.8)
 nx.draw(G, pos , with_labels = True, width=0.4, node_color=color_map, node_size=400)
-
-
+plt.savefig("Graph.png", format="PNG")
 plt.show()
