@@ -1,31 +1,27 @@
-from matplotlib import scale
 import networkx as nx
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 
-G = nx.DiGraph()
-
-### BUSSES
-busses_list = [1,2,4,6,7,8,9,10]
+G = nx.Graph()
 
 ### STATIONS
 bus_no_1 = ["Železničná stanica Nitra",	"Rázcestie Autobusová stanica",	"CENTRUM, Mlyny","Fraňa Mojtu",	"Predmostie", "Pod Zoborom",
 	"Vinárske závody","Amfiteáter","ZŠ pod Zoborom","Jánskeho","Zariadenie pre seniorov Zobor",	"Strmá","Chmeľová dolina","Urbancova",	
 	"Hornozoborská","Klinčeková","Nemocnica Zobor",]
 
-bus_no_2 = ["Kmeťova","Bizetova","Edisonova","Golianova","Nedbalova","Mestská hala","Kostolná","Tehelná","Dolnočermánska","Murgašova",
-	"Stavebná škola","Rázcestie Železničná stanica","Rázcestie Autobusová stanica","CENTRUM, Mlyny","Univerzity","Andreja Hlinku","Centro",	
-	"Nábrežie mládeže","Lomnická","Pod Zoborom","Amfiteáter","ZŠ pod Zoborom","Veterinárska","Šindolka", "Dolnohorská"]
+bus_no_32 = ["Gorazdova", "Bohúňova", "Sitnianska", "Poliklinika Chrenová", "Výstavisko", "Andreja Hlinku, Centro", "Univerzity", "CENTRUM, Mlyny",	"Hollého",	
+	"Kavcova", "Poliklinika Klokočina", "Mikovíniho", "Čajkovského", "Edisonova", "Bizetova", "Kmeťova", "Murániho", "Tokajská","Viničky"]
 
-bus_no_4 = [
-    "Kmeťova","Bizetova","Edisonova","Golianova","Nedbalova","Mestská hala","Kostolná","Tehelná","Dolnočermánska","Murgašova","Stavebná škola",	
-	"Rázcestie Železničná stanica","Rázcestie Autobusová stanica","CENTRUM, Mlyny","Univerzity","Andreja Hlinku, Centro","Nábrežie mládeže",
-	"Lomnická","Pod Zoborom","Amfiteáter","ZŠ pod Zoborom","Veterinárska","Šindolka, Dolnohorská","Priemyselný park VII","Priemyselný park IV",	
-	"Priemyselný park V","Priemyselný park III","Priemyselný park II","Priemyselný park I","Rázcestie Priemyselný park","PD Dražovce",
-	"Pri kríži","Belopotockého","Dražovce"]
+bus_no_12 = ["Gorazdova","Bohúňova","Ďurčanského","Atletický štadión","Andreja Hlinku, Centro","Univerzity","CENTRUM, Mlyny","Rázcestie Autobusová stanica",	
+	"Rázcestie Železničná stanica","Kasárne Krškany","Rázcestie Priemyselná","Horné Krškany","Nitrafrost","Mevak","ZŠ Krškany","Na Priehon","Dvorčianska",	
+	"Nitrianske strojárne","Záborského","Trans Motel","Idea","Ivanka pri Nitre, Texiplast","Ivanka pri Nitre, železničná stanica","Ivanka pri Nitre, kultúrny dom",	
+	"Ivanka pri Nitre, Orolská","Ivanka pri Nitre, Luk","Branč, Arkuš","Branč, Veľkoveská","Branč, kultúrny dom","Branč, pneuservis","Branč, Kurucká",	
+	"Branč, železničná stanica"
+    ]
 
-bus_no_6 = ["Gorazdova","Bohúňova","Ďurčanského","Chrenovský cintorín","Vašinova","Chrenovská, MAX","Pod Zoborom","Predmostie","Fraňa Mojtu",
-	"Palárikova","CENTRUM, Mlyny","Hollého","Kavcova","Poliklinika Klokočina","Mikovíniho","ZŠ Škultétyho","Mestská hala","Nedbalova","Golianova",
-	"Edisonova"]
+bus_no_27 = ["Železničná stanica Nitra","Rázcestie Autobusová stanica","Palárikova","Fraňa Mojtu","Predmostie","Pod Zoborom","Rázcestie Panská dolina",
+	"Rázcestie Metodova","Metodova","Moskovská","Rázcestie Moskovská","Nitr. Hrnčiarovce, Pod Sokolom","Nitr. Hrnčiarovce, Krajná","Nitr. Hrnčiarovce, ZŠ",
+	"Nitr. Hrnčiarovce","Nitr. Hrnčiarovce, Šopronská","Nitr. Hrnčiarovce, vinohrady","Štitáre, Šöpröš","Štitáre, Ku Gáborke","Štitáre"]
 
 
 def Add_nodes(list1):
@@ -33,41 +29,45 @@ def Add_nodes(list1):
 
 
 def add_edges():
-    for edge in bus_no_1: 
-        G.add_edge(edge, busses_list[0])
+    for x in range(len(bus_no_1)-1): 
+        G.add_edge(bus_no_1[x], bus_no_1[x+1], color='red', weight=4)
 
-def add_edges2():
-    for edge in bus_no_2: 
-        G.add_edge(edge, busses_list[1])
+def add_edges32():
+    for x in range(len(bus_no_32)-1): 
+        G.add_edge(bus_no_32[x], bus_no_32[x+1], color="blue", weight=4)
 
-def add_edges3():
-    for edge in bus_no_4: 
-        G.add_edge(edge, busses_list[2])
+def add_edges12():
+    for x in range(len(bus_no_12)-1): 
+        G.add_edge(bus_no_12[x], bus_no_12[x+1], color="green", weight=4)
 
-def add_edges4():
-    for edge in bus_no_6: 
-        G.add_edge(edge, busses_list[3])
+def add_edges27():
+    for x in range(len(bus_no_27)-1): 
+        G.add_edge(bus_no_27[x], bus_no_27[x+1],color="yellow",weight=4)
         
 
 
-# Creating_nodes_list(10)
+# Creating nodes
 Add_nodes(bus_no_1)
+Add_nodes(bus_no_32)
+Add_nodes(bus_no_12)
+Add_nodes(bus_no_27)
+
+# Creating edges
 add_edges()
-add_edges2()
-add_edges3()
-add_edges4()
+add_edges32()
+add_edges12()
+add_edges27()
 
+legend_elements = [Line2D([0], [0], color='r', lw=4, label='BUS no. 1'),
+                   Line2D([0], [0], color='g', lw=4, label='BUS no. 12'),
+                   Line2D([0], [0], color='y', lw=4, label='BUS no. 27'),
+                   Line2D([0], [0], color='b', lw=4, label='BUS no. 32')
+                   ]
 
-color_map = []
-
-for node in G:
-    if node == 1 or node == 2 or node == 4 or node == 6:
-        color_map.append('red')
-    else: 
-        color_map.append('lightblue')   
-
-
-pos = nx.spring_layout(G, k=0.8)
-nx.draw(G, pos , with_labels = True, width=0.4, node_color=color_map, node_size=400)
-plt.savefig("Graph.png", format="PNG")
+edges = G.edges()
+colors = [G[u][v]['color'] for u,v in edges]
+weights = [G[u][v]['weight'] for u,v in edges]
+nx.draw(G, with_labels=True, font_size=7, node_size=100, edge_color=colors, width=weights)
+plt.legend(handles=legend_elements)
+plt.savefig("Graph.png", format="PNG",  dpi=500)
 plt.show()
